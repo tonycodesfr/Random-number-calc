@@ -2,19 +2,27 @@ const minimumValue = parseInt(document.querySelector(".min").value);
 
 const maximumValue = parseInt(document.querySelector(".max").value);
 
+const number = document.querySelector(".number").innerHTML;
+
 const button = document.querySelector("button");
 
-// document.console.log(minimunValue);
+//console.log(minimunValue);
 
 function generateRandomNumber(min, max, event) {
+  /*
+  - Not allow a user to enter a minimum value < 0 
+- Not allow a user to enter a maximum value that is less than the minimum value*/
+
   event.preventDefault();
-  const number = Math.floor(Math.random() * (max - min + 1) + min);
-  document.querySelector(".number").innerHTML = number;
-  console.log(event);
+  if (minimumValue > 0) {
+    const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+    number.innerHTML = randomNumber;
+    // console.log(event);
+  } else {
+    alert("Minimum value should be greater than 0");
+  }
 }
 
 button.addEventListener("click", function (event) {
-  const minimumValue = parseInt(document.querySelector(".min").value);
-  const maximumValue = parseInt(document.querySelector(".max").value);
   generateRandomNumber(minimumValue, maximumValue, event);
 });
